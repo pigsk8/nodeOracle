@@ -1,12 +1,9 @@
 FROM oraclelinux:7-slim as builder
 
-ARG release=19
-ARG update=5
+RUN yum -y install oracle-release-el7 && oracle-instantclient19.5-basiclite
 
-RUN yum -y install oracle-release-el7 && oracle-instantclient${release}.${update}-basiclite
-
-RUN rm -rf /usr/lib/oracle/${release}.${update}/client64/bin
-WORKDIR /usr/lib/oracle/${release}.${update}/client64/lib/
+RUN rm -rf /usr/lib/oracle/19.5/client64/bin
+WORKDIR /usr/lib/oracle/19.5/client64/lib/
 RUN rm -rf *jdbc* *occi* *mysql* *jar
 
 # Get a new image
