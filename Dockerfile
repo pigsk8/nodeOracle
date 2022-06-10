@@ -3,8 +3,7 @@ FROM oraclelinux:7-slim as builder
 ARG release=19
 ARG update=5
 
-RUN yum -y install oracle-release-el7 &&
-     oracle-instantclient${release}.${update}-basiclite
+RUN yum -y install oracle-release-el7 && oracle-instantclient${release}.${update}-basiclite
 
 RUN rm -rf /usr/lib/oracle/${release}.${update}/client64/bin
 WORKDIR /usr/lib/oracle/${release}.${update}/client64/lib/
